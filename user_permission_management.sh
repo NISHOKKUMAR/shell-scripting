@@ -75,34 +75,34 @@ list_users_groups() {
     cut -d: -f1 /etc/group
 }
 
-
-
 # Main Menu
 echo "User and Permission Management Script"
-PS3="Choose an option: "
-select option in "Create User" "Delete User" "Create Group" "Assign Permissions" "List Users/Groups" "Exit"
-do
-    case $option in
-        "Create User")
-            create_user
-            ;;
-        "Delete User")
-            delete_user
-            ;;
-        "Create Group")
-            create_group
-            ;;
-        "Assign Permissions")
-            assign_permissions
-            ;;
-        "List Users/Groups")
-            list_users_groups
-            ;;
-        "Exit")
-            break
-            ;;
-        *)
-            echo "Invalid option!"
-            ;;
-    esac
+
+while true; do
+    echo "Choose an option:"
+    echo "1. Add User"
+    echo "2. Delete User"
+    echo "3. Create Group"
+    echo "4. Assign Permissions"
+    echo "5. List Users/Groups"
+    echo "6. Exit"
+    
+    read OPTION
+
+    if [[ $OPTION -eq 1 ]]; then
+        create_user
+    elif [[ $OPTION -eq 2 ]]; then
+        delete_user
+    elif [[ $OPTION -eq 3 ]]; then
+        create_group
+    elif [[ $OPTION -eq 4 ]]; then
+        assign_permissions
+    elif [[ $OPTION -eq 5 ]]; then
+        list_users_groups
+    elif [[ $OPTION -eq 6 ]]; then
+        echo "Exiting script..."
+        break
+    else
+        echo "Invalid option. Please try again."
+    fi
 done
